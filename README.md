@@ -19,9 +19,21 @@ other stuff that I consider imprtant to note out.
 3. Create new user. Test it.
 
 
-### 77. Queris
+### 77. QUERIS
 
 1. Query by id
 1. Grab Id
 3. Loas User mongoose model
 4. user.findById;
+
+### 78. GETTING AN INDIVIDUAL RESOURCE
+
+1. Validate th ID using isValid
+  - If is not valit : 404. Send back empty body
+
+2. Queryng the databas
+3. Succes: 
+  - If todo sent it back.
+  - If no todo send back 404 with empty body.
+4. Error: 
+  - 400 - and send empty body back.
