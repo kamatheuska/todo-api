@@ -17,3 +17,11 @@ other stuff that I consider imprtant to note out.
   -> set type to string  
   -> set min lenght of 1
 3. Create new user. Test it.
+
+
+### 77. Queris
+
+1. Query by id
+1. Grab Id
+3. Loas User mongoose model
+4. user.findById;
