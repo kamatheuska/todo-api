@@ -13,12 +13,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(express.static(path.dirname(__dirname) + '/client'));
-
-
-app.get('/', (req, res) => {
-  res.sendFile('/index.html');
-});
 
 app.post('/todos', (req, res) => {
   let todo = new Todo({

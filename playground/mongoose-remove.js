@@ -11,6 +11,3 @@ Todo.remove({}).then((result) => {
 // Todo.findOneAndRemove
 // Todo.findByIdAndRemove
 
-Todo.findByIdAndRemove('asdf').then(() => {
-
-})
