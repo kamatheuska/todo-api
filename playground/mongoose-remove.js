@@ -7,3 +7,10 @@ const { User } = require('./../server/models/user');
 Todo.remove({}).then((result) => {
   console.log(result);
 });
+
+// Todo.findOneAndRemove
+// Todo.findByIdAndRemove
+
+Todo.findByIdAndRemove('asdf').then(() => {
+
+})
