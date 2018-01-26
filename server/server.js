@@ -1,15 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { ObjectID } = require('mongodb');
+const path = require('path');
 
 const { mongoose } = require('./db/mongoose');
 const { Todo } = require('./models/todo');
 const { User } = require('./models/user');
 
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(express.static(path.dirname(__dirname) + '/client'));
+
+
+app.get('/', (req, res) => {
+  res.sendFile('/index.html');
+});
 
 app.post('/todos', (req, res) => {
   let todo = new Todo({
@@ -46,10 +54,22 @@ app.get('/todos/:id', (req, res) => {
   }).catch((e) => console.log(404, e));
 });
 
+app.delete('/todos/:id', (req, res) => {
+  let id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    res.status(404).send();
+  }
+  Todo.findByIdAndRemove(id).then((todo) => {
+    if (!todo) {
+      res.status(404).send();
+    }
+    res.status(200).send(todo);
+  }).catch((e) => console.log(400));
+})
 
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
 });
 
 
-module.exports = { app };
+module.exports = { app }; 
