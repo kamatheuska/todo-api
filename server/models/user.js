@@ -29,9 +29,12 @@ let UserSchema = new mongoose.Schema({
     token: {
       type: String,
       required: true
-    }
-  }]
-});
+    }}]
+  },
+  {
+  usePushEach: true
+  }
+);
 
 UserSchema.methods.toJSON = function () {
   let user = this;
@@ -41,12 +44,12 @@ UserSchema.methods.toJSON = function () {
 }
 
 
-UserSchema.methods.generateAuthtToken = function () {
+UserSchema.methods.generateAuthToken = function () {
   let user = this;
   let access = 'auth';
   let token = jwt.sign({_id: user._id.toHexString(), access}, 'abc123').toString();
 
-  user.tokens.push({ access, token });
+ user.tokens = user.tokens.concat([{ access, token }]);
 
   return user.save().then(() => {
     return token;
