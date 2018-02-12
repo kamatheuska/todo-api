@@ -4,3 +4,4 @@ playground/
 BAK/
 *.swp
 lessons/
+server/config/config.json
